@@ -24,4 +24,4 @@
  var string = "Hello World"
  alert(string)
 ```
-6. 将 demo.sh 上传至 GitHub
+7. 将 demo.sh 上传至 GitHub
