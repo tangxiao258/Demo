@@ -60,7 +60,7 @@
 				var j = 0
 				while(j < keyItem['length']){
 					var kbd = document.createElement('kbd')
-					kbd.textContent = keyItem[j]
+					kbd.textContent = keyItem[j].toUpperCase()
 					kbd.className = 'kbd-wrapper'
 
 					var span = document.createElement('span')
@@ -81,6 +81,13 @@
 				}
 				main.appendChild(div)
 				i = i + 1
+			}
+
+			document.onkeypress = function(xjshjsi){
+				var key = xjshjsi['key'] 
+				console.log(key)
+				var website = hash[key]
+				window.open('http://' + website, '_blank')
 			}
 		</script>
 	</body>
