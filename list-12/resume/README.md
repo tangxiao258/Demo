@@ -1,2 +1,2 @@
 ## 预览
-https://tangxiao258.github.io/Demo/list-10/resume/
+https://tangxiao258.github.io/Demo/list-12/resume/
