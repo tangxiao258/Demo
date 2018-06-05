@@ -9,15 +9,19 @@ var eraserEnabled = false;
 
 // 画笔橡皮擦切换
 pen.onclick = function(){
-  eraserEnabled = true;
+  eraserEnabled = false;
   pen.classList.add('active');
   eraser.classList.remove('active');
 }
 
 eraser.onclick = function(){
-  eraserEnabled = false;
+  eraserEnabled = true;
   eraser.classList.add('active');
   pen.classList.remove('active');
+}
+
+black.onclick = function(){
+  console.log(black.parentNode);
 }
 
 red.onclick = function(){
@@ -37,6 +41,7 @@ green.onclick = function(){
 }
 
 blue.onclick = function(){
+  console.log('blue');
   blue.classList.add('active');
   red.classList.remove('active');
   green.classList.remove('active');
@@ -156,14 +161,12 @@ function listenToMouse(canvas){
 
 function drawCircle(x, y, radius){
   context.beginPath();
-  context.fillStyle = 'black';
   context.arc(x, y, radius, 0, Math.PI*2);
   context.fill();
 }
 
 function drawLine(x1,y1,x2,y2){
   context.beginPath();
-  context.strokeStyle = 'black';
   context.moveTo(x1, y1); // 起点
   context.lineWidth = 5;
   context.lineTo(x2, y2); // 终点
