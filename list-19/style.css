@@ -1,5 +1,12 @@
+*{
+  margin:0;
+  padding: 0;
+}
+ol, ul{
+	list-style: none;
+}
 #xxx{
-  background-color:green;
+ display: block;
 }
 
 
@@ -9,16 +16,52 @@ body{
 
 .actions{
   position:fixed;
-  bottom:0;
+  top:0;
   left:0;
+  padding:10px;
 }
 
-.actions > #brush{
-  display:none;
+.actions > svg{
+  height:1.5em;
+  width:1.5em;
+  transition:all 0.3s;
+  margin: 0 1.2em;
 }
-.actions.x > #brush{
-  display:inline-block;
+
+.actions > svg.active{
+  transform:scale(1.3);
+  color:red;
 }
-.actions.x > #eraser{
-  display:none;
+
+.colors{
+	position: absolute;
+	top:50px;
+	left:28px;
 }
+
+.colors ol>li{
+	width:20px;
+	height:20px;
+	border-radius: 50%;
+	box-shadow: 0 0 5px rgba(0,0,0,0.25);
+	margin:10px 0;
+}
+
+.colors ol>li.active{
+	width:22px;
+	height:22px;
+}
+
+#red{
+	background-color: red;
+}
+
+#green{
+	background-color: green;
+}
+
+#blue{
+	background-color: blue;
+}
+
+

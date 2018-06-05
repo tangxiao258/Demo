@@ -6,7 +6,43 @@ autoSetCanvasSize(yyy);
 
 // 监听用户点击事件
 var eraserEnabled = false;
-listenToActions();
+
+// 画笔橡皮擦切换
+pen.onclick = function(){
+  eraserEnabled = true;
+  pen.classList.add('active');
+  eraser.classList.remove('active');
+}
+
+eraser.onclick = function(){
+  eraserEnabled = false;
+  eraser.classList.add('active');
+  pen.classList.remove('active');
+}
+
+red.onclick = function(){
+  red.classList.add('active');
+  green.classList.remove('active');
+  blue.classList.remove('active');
+  context.fillStyle = 'red';
+  context.strokeStyle = 'red';
+}
+
+green.onclick = function(){
+  green.classList.add('active');
+  red.classList.remove('active');
+  blue.classList.remove('active');
+  context.fillStyle = 'green';
+  context.strokeStyle = 'green';
+}
+
+blue.onclick = function(){
+  blue.classList.add('active');
+  red.classList.remove('active');
+  green.classList.remove('active');
+  context.fillStyle = 'blue';
+  context.strokeStyle = 'blue';
+}
 
 // 监听用户鼠标事件
 listenToMouse(yyy);
@@ -27,17 +63,6 @@ function autoSetCanvasSize(canvas){
   }
 }
 
-function listenToActions(){
-  eraser.onclick = function(){
-    eraserEnabled = true;
-    actions.className = 'actions x'
-  }
-  brush.onclick = function(){
-    eraserEnabled = false;
-    actions.className = 'actions'
-  }
-}
-
 function listenToMouse(canvas){
   var using = false;
   
@@ -50,42 +75,82 @@ function listenToMouse(canvas){
     "y": undefined
   };
 
-  canvas.onmousedown = function(event){
-    var x = event.clientX;
-    var y = event.clientY;
-    using = true;
-    if(eraserEnabled){
-      context.clearRect(x -5, y -5, 10, 10);
-    }else{
-      beginPath = {
-        "x": x, 
-        "y": y
-      }; 
+  if(document.body.ontouchstart !== undefined){
+    // 触屏设备
+    canvas.ontouchstart = function(event){
+     var x = event.touches[0].clientX;
+        var y = event.touches[0].clientY;
+        using = true;
+        if(eraserEnabled){
+          context.clearRect(x -5, y -5, 10, 10);
+        }else{
+          beginPath = {
+            "x": x, 
+            "y": y
+          }; 
+        }
     }
-  }
 
-  canvas.onmousemove = function(){
-    var x = event.clientX;
-    var y = event.clientY;
-  
-    if(!using) {return;}
-  
-    if(eraserEnabled){
-      context.clearRect(x -5, y - 5, 10, 10);
-    }else{
-       endPath = {
-         "x": x, 
-         "y": y
-       };
-      drawLine(beginPath.x, beginPath.y,endPath.x,endPath.y );
-      beginPath = endPath;
+    canvas.ontouchmove = function(event){
+      var x = event.touches[0].clientX;
+        var y = event.touches[0].clientY;
+      
+        if(!using) {return;}
+      
+        if(eraserEnabled){
+          context.clearRect(x -5, y - 5, 10, 10);
+        }else{
+           endPath = {
+             "x": x, 
+             "y": y
+           };
+          drawLine(beginPath.x, beginPath.y,endPath.x,endPath.y );
+          beginPath = endPath;
+        }
     }
-  }
 
-  canvas.onmouseup = function(){
-    using = false;
-  }
+    canvas.ontouchend = function(event){
+      using = false;
+    } 
+  } else{
+    // 电脑设备
+    canvas.onmousedown = function(event){
+        var x = event.clientX;
+        var y = event.clientY;
+        using = true;
+        if(eraserEnabled){
+          context.clearRect(x -5, y -5, 10, 10);
+        }else{
+          beginPath = {
+            "x": x, 
+            "y": y
+          }; 
+        }
+      }
 
+      canvas.onmousemove = function(){
+        var x = event.clientX;
+        var y = event.clientY;
+      
+        if(!using) {return;}
+      
+        if(eraserEnabled){
+          context.clearRect(x -5, y - 5, 10, 10);
+        }else{
+           endPath = {
+             "x": x, 
+             "y": y
+           };
+          drawLine(beginPath.x, beginPath.y,endPath.x,endPath.y );
+          beginPath = endPath;
+        }
+      }
+
+      canvas.onmouseup = function(){
+        using = false;
+      }
+
+  }
 }
 
 
