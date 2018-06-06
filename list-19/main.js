@@ -1,5 +1,6 @@
 var yyy = document.getElementById('xxx');
 var context = yyy.getContext('2d');
+var defaultLineWidth = 5;
 
 // canvas大小自适应
 autoSetCanvasSize(yyy);
@@ -20,12 +21,32 @@ eraser.onclick = function(){
   pen.classList.remove('active');
 }
 
+clear.onclick = function(){
+  context.clearRect(0,0,yyy.width,yyy.height);
+}
+
+download.onclick = function(){
+  var url = yyy.toDataURL('image/png');
+  var a = document.createElement('a');
+  document.body.appendChild(a);
+  a.href = url;
+  a.download = 'xxx';
+  a.click();
+}
+
+
 black.onclick = function(){
-  console.log(black.parentNode);
+  black.classList.add('active');
+  red.classList.remove('active');
+  green.classList.remove('active');
+  blue.classList.remove('active');
+  context.fillStyle = 'black';
+  context.strokeStyle = 'black';
 }
 
 red.onclick = function(){
   red.classList.add('active');
+  black.classList.remove('active');
   green.classList.remove('active');
   blue.classList.remove('active');
   context.fillStyle = 'red';
@@ -34,6 +55,7 @@ red.onclick = function(){
 
 green.onclick = function(){
   green.classList.add('active');
+  black.classList.remove('active');
   red.classList.remove('active');
   blue.classList.remove('active');
   context.fillStyle = 'green';
@@ -41,12 +63,20 @@ green.onclick = function(){
 }
 
 blue.onclick = function(){
-  console.log('blue');
   blue.classList.add('active');
+  black.classList.remove('active');
   red.classList.remove('active');
   green.classList.remove('active');
   context.fillStyle = 'blue';
   context.strokeStyle = 'blue';
+}
+
+small.onclick = function(){
+  defaultLineWidth = 5;
+}
+
+big.onclick = function(){
+  defaultLineWidth = 10;
 }
 
 // 监听用户鼠标事件
@@ -168,7 +198,7 @@ function drawCircle(x, y, radius){
 function drawLine(x1,y1,x2,y2){
   context.beginPath();
   context.moveTo(x1, y1); // 起点
-  context.lineWidth = 5;
+  context.lineWidth = defaultLineWidth;
   context.lineTo(x2, y2); // 终点
   context.stroke();
   context.closePath();

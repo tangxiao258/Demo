@@ -44,7 +44,7 @@ body{
 	height:20px;
 	border-radius: 50%;
 	box-shadow: 0 0 5px rgba(0,0,0,0.25);
-	margin:10px 2px;
+	margin:10px 1px;
 }
 
 .colors ol>li.active{
@@ -67,6 +67,25 @@ body{
 
 #blue{
 	background-color: blue;
+}
+
+.sizes{
+	position: absolute;
+	top:20px;
+	right:20px;
+}
+.sizes > li{
+	margin-bottom:20px;
+}
+#small{
+	width:20px;
+	height:5px;
+	background:-color:black;
+}
+#big{
+	width:20px;
+	height:10px;
+	background-color: black;
 }
 
 
