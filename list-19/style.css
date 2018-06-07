@@ -78,9 +78,10 @@ body{
 	margin-bottom:20px;
 }
 #small{
-	width:20px;
-	height:5px;
-	background:-color:black;
+	width: 20px;
+    height: 5px;
+    background-color: black;
+    margin-bottom: 10px;
 }
 #big{
 	width:20px;
