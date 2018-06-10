@@ -72,16 +72,30 @@
 <div id="siteWelcome" class="site-welcome active">
     <div class="loaing"></div>
 </div>
-<div class="topNavBar clearfix">
+<div id="topNavBar" class="topNavBar clearfix">
     <a href="#" alt=logo class="logo">
         <span class="rs">RS</span><span class="card">card</span>
     </a>
-    <nav>
+    <nav class="menu">
         <ul class="clearfix">
-            <li><a href="#">关于</a></li>
-            <li><a href="#">技能</a></li>
-            <li><a href="#">作品</a></li>
-            <li><a href="#">博客</a></li>
+            <li><a href="#siteAbout">关于</a></li>
+            <li><a href="#siteSkill">技能</a></li>
+            <li>
+                <a href="#siteWorks">作品</a>
+                <ul class="submenu">
+                    <li><a href="">作品一</a></li>
+                    <li><a href="">作品二</a></li>
+                    <li><a href="">作品三</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">博客</a>
+                <ul class="submenu">
+                    <li><a href="">博客一</a></li>
+                    <li><a href="">博客二</a></li>
+                    <li><a href="">博客三</a></li>
+                </ul>
+            </li>
             <li><a href="#">日历</a></li>
             <li><a href="#">联系方式</a></li>
             <li><a href="#">其他</a></li>
@@ -92,7 +106,7 @@
     <div class="mask"></div>
 </div>
 <main>
-    <div class="userCard">
+    <div id="siteAbout" class="userCard">
         <div class="pictureAndText clearfix">
             <div class="picture">
                 <img src="./img/avatar.jpg" alt="头像" width="299" height="347">
@@ -143,7 +157,7 @@
         技能：前端开发
     </p>
 </main>
-<section class="skills">
+<section class="skills" id="siteSkill">
     <h2>技能</h2>
     <ol class="clearfix">
         <li>
@@ -184,7 +198,7 @@
         </li>
     </ol>
 </section>
-<section class="portfolio">
+<section class="portfolio" id="siteWorks">
     <h2>作品集</h2>
     <nav>
         <ol>
@@ -209,7 +223,37 @@
 
         setTimeout(function(){
             siteWelcome.classList.remove('active');
-        }, 3000)
+        }, 1000)
+
+        window.onscroll = function(){
+            if(window.scrollY > 0){
+                topNavBar.classList.add('sticky')
+            }else{
+                topNavBar.classList.remove('sticky')
+            }
+        }
+
+        var liTags = document.querySelectorAll('nav.menu > ul > li')
+        for(var i = 0; i < liTags.length; i++){
+            liTags[i].onmouseenter = function(xxx){
+                xxx.currentTarget.classList.add('active')
+            }
+            liTags[i].onmouseleave = function(xxx){
+                xxx.currentTarget.classList.remove('active')
+            }
+        }
+
+        var aTags = document.querySelectorAll('nav.menu > ul > li > a')
+        for(var i = 0; i < aTags.length; i++){
+            aTags[i].onclick = function(xxx){
+                xxx.preventDefault()
+                var a = xxx.currentTarget
+                var href = a.getAttribute('href')
+                var element = document.querySelector(href)
+                var top = element.offsetTop - 80
+                window.scrollTo(0, top)
+            }
+        }
     </script>
     <div class="works">
         <div class="big" style="top:0;left:0;">
