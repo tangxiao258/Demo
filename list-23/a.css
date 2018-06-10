@@ -28,7 +28,28 @@ box-shadow: 0 0 10px rgba(0,0,0,0.25);color: #3d4451;}
 
 .topNavBar > nav > ul > li > a {display: block; font-size: 12px; text-decoration: none; font-weight: bold; border-top: 3px solid transparent; border-bottom: 3px solid transparent; padding-top: 5px; padding-bottom: 5px; }
 
+[data-x].active{
+    outline:10px solid red;
+}
+[data-x].offset{
+    transform: translateY(100px);
+}
+[data-x]{
+    transform: translateY(0);
+    transition: all .5s;
+}
+
 .topNavBar > nav > ul > li.active > a:after {
+  position: absolute;
+  content:'';
+  top:100%;
+  left: 0;
+  background: #e06567;
+  height:3px;
+  width:100%;
+  animation: menuSlider .3s;
+}
+.topNavBar > nav > ul > li.highlight > a:after {
   position: absolute;
   content:'';
   top:100%;
