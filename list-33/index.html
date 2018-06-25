@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <title>server</title>
+    </head>
+    <body>
+      <h5>您的账户余额是<span id="amount">&&&amount&&&</span></h5>
+      <button id="button">打钱</button>
+      <script>
+          button.addEventListener('click', (e) => {
+            let script = document.createElement('script')
+            script.src = 'http://localhost:8002/pay?callbackName=xxx'
+
+            xxx = function(){
+              amount.innerHTML = amount.innerText - 1
+            }
+            
+            document.body.appendChild(script)
+            script.onload = function(e){
+              e.currentTarget.remove()  
+            }
+            script.onerror = function(e){
+              alert('fail')
+            }
+          })
+      </script>
+    </body>
+</html>
