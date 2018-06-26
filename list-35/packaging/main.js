@@ -1,12 +1,7 @@
 window.jQuery = function(){}
 
 window.jQuery.ajax = function(options){
-  let url = options.url
-  let method = options.method
-  let body = options.body
-  let headers = options.headers
-  let success = options.success
-  let fail = options.fail 
+  let {url, method, body, headers, success, fail} = options
 
   let request = new XMLHttpRequest()
   request.open(method, url)
