@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>首页</title>
-    </head>
-    <body>
-    <h1>你的密码是：__password__</h1>
-    </body>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>画一只皮卡丘</title>
+  <link rel="stylesheet" href="./css/default.css">
+  <style id="styleTag"></style>
+</head>
+<body>
+<div class="code-wrapper">
+  <pre id="code"></pre>
+</div>
+<div class="preview-wrapper">
+  <div class="content-wrapper">
+    <div class="preview">
+      <div class="nose"></div>
+      <div class="eye left"></div>
+      <div class="eye right"></div>
+      <div class="face left"></div>
+      <div class="face right"></div>
+      <div class="lipLow-wrapper">
+        <div class="lipLow"></div>
+      </div>
+      <div class="lipUpper left"></div>
+      <div class="lipUpper right"></div>
+    </div>
+  </div>
+</div>
+<div class="operator-wrapper">
+  <div data-size="slow" class="button">慢速</div>
+  <div data-size="normal" class="button active">适中</div>
+  <div data-size="fast" class="button">快速</div>
+</div>
+<script src="./vendor/jquery.min.js"></script>
+<script src="./js/main.js"></script>
+</body>
 </html>
