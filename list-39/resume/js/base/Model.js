@@ -1,3 +1,8 @@
+/*
+Model({
+	resourceName:xxx
+})
+ */
 function Model(options){
 	let resourceName = options.resourceName
 	return {

@@ -29,31 +29,9 @@ var server = http.createServer(function(request, response){
     response.setHeader('Content-Type', 'text/html;charset=utf-8')
     response.write(string)
     response.end()
-  }else if(path === '/main.js'){
-    response.statusCode = 200
-    var string = fs.readFileSync('./main.js', 'utf-8')
-    response.setHeader('Content-Type', 'application/javascript')
-    response.write(string)
-    response.end()
   }else if(path === '/xxx'){
     response.statusCode = 200
-    response.setHeader('Content-Type', 'text/json;charset=utf-8')
-    response.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888')
-    response.write(`
-     {
-      "note":{
-        "to": "小谷",
-        "from": "方方",
-        "heading": "打招呼",
-        "content": "hi"
-      }
-    }   
-    `)
-    response.end() 
-  }else if(path === '/pay'){
-    var amount = fs .readFileSync('./db',  'utf-8')
-    var newAmount = amount - 1
-    fs.writeFileSync('./db', newAmount)
+    response.setHeader()
     response.write(`
         ${query.callbackName}.call(undefined, 'success')
         `)
