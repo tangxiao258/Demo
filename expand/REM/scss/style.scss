@@ -1,0 +1,13 @@
+@function px($px){
+  @return $px/$designWidth*10 + rem;
+}
+$designWidth: 640; // 640是设计稿的宽度，这里需要根据设计稿的宽度填写
+
+html{
+  font-size:($designWidth/10)px;
+}
+
+.child{
+width: px(320);
+height:px(160);
+}
