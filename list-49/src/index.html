@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>音乐后台管理系统</title>
+	</head>
+	<body>
+		<script src="../node_modules/leancloud-storage/dist/av-min.js"></script>
+		<script>
+			var APP_ID = 'WNHfnMwyFvRFMSsy4WqLQXOE-gzGzoHsz';
+			var APP_KEY = 'Ulyl6dXXxQzJK1TpeInJAnJw';
+
+			AV.init({
+			  appId: APP_ID,
+			  appKey: APP_KEY
+			});
+
+			var TestObject = AV.Object.extend('TestObject');
+			var testObject = new TestObject();
+			testObject.save({
+				words: 'Hello World!'
+			}).then(function(object) {
+				alert('LeanCloud Rocks!');
+			})
+		</script>
+	</body>
+</html>
