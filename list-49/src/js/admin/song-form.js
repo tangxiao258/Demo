@@ -50,6 +50,7 @@
 			})
 
 			$(this.el).html(html)
+			console.log(data.id)
 			if(data.id){
 				$(this.el).prepend('<h1>编辑歌曲</h1>')
 			}else{
@@ -106,9 +107,10 @@
 				needs.map((string) => {
 					data[string] = $(this.view.el).find(`input[name=${string}]`).val()
 				})
-				this.model.update(data).then(() => {
+				this.model.update(data).then((response) => {
 					window.eventHub.emit('update', data)
-					this.view.reset()
+					Object.assign(this.model.data, {id, ...response.attributes})
+					this.view.render(this.model.data)
 				})
 			})
 		}
