@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="utf-8">
+	    <title>音乐后台管理</title>	
+	</head>
+	<body>
+	    <script src="../node_modules/leancloud-storage/dist/av-min.js"></script>
+	    <script src="./initializer/av.js"></script>
+	    <script>
+	    	var Song = AV.Object.extend('Song');
+	    	var song = new Song();
+			song.set('testNumber', '1');
+			song.save().then(function(response) {
+			    // 成功
+			    console.log(response)
+			}, function(error) {
+			    // 失败
+			});
+	    </script>
+	</body>
+</html>
