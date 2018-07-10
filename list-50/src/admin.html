@@ -78,11 +78,9 @@
 	</head>
 	<body>
 		<aside>
-			<p class="new-container active">新建歌曲</p>
-			<ul class="songs-container">
-				<li>歌曲1</li>
-				<li>歌曲2</li>
-			</ul>
+			<p class="new-container"></p>
+			<div class="song-list-container">
+			</div>
 			<div class="upload">
 				<div id="uploadContainer" class="upload-container">
 					<span id="uploadButton">点击上传文件</span>
@@ -91,24 +89,7 @@
 			</div>
 		</aside>
 		<main>
-			<h1>新建歌曲</h1>
-			<form id="form-container">
-				<div class="row">
-					<label for="name">歌名</label>
-				    <input type="text" name="name">
-				</div>
-				<div class="row">
-					<label for="singer">歌手</label>
-					<input type="text" name="singer">
-				</div>
-				<div class="row">
-					<label for="url">链接</label>
-				    <input type="text" name="url">
-				</div>
-				<div class="row">
-					<input type="submit" value="保存">
-				</div>
-			</form>
+			
 		</main>
 	    <script src="../node_modules/leancloud-storage/dist/av-min.js"></script>
 	    <script src="./initializer/av.js"></script>
@@ -126,7 +107,11 @@
 	    <script src="../node_modules/plupload/js/moxie.min.js"></script>
 	    <script src="../node_modules/plupload/js/plupload.min.js"></script>
 	    <script src="../node_modules/qiniu-js/dist/qiniu.min.js"></script>
+	    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
 	    <script src="./js/event-hub.js"></script>
+	    <script src="./js/song-form.js"></script>
+	    <script src="./js/song-list.js"></script>
+	    <script src="./js/new-song.js"></script>
 	    <script src="./js/upload-song.js"></script>
 	</body>
 </html>
