@@ -3,20 +3,130 @@
 	<head>
 	    <meta charset="utf-8">
 	    <title>音乐后台管理</title>	
+	    <style>
+	    	*{margin:0;padding:0;box-sizing: border-box;}
+	    	ol,li{list-style: none;}
+	    	body{
+	    		height: 100vh;
+	    		display: flex;
+	    	}
+	    	aside{
+	    		height:100vh;
+	    		border-right: 1px solid #ddd;
+	    		display: flex;
+	    		flex-direction: column;
+	    		width:200px;
+	    	}
+	    	.new-container{
+	    		padding:10px 10px;
+	    		text-align: center;
+	    		border-bottom:1px solid #bbb;
+	    	}
+	    	.active{
+	    		background-color:#ddd;
+	    	}
+	    	.upload-container{
+	    		position: absolute;
+	    		bottom:0;
+	    	}
+	    	.songs-container li{
+	    		padding:10px 10px;
+	    		line-height:20px;
+	    		border-bottom:1px solid #ccc;
+	    	}
+	    	.upload-container{
+	    		width:200px;
+	    		padding:20px 20px;
+	    		border:1px dotted #ccc;
+	    		border-radius:10px;
+	    		display: flex;
+	    		flex-direction: column;
+	    		text-align: center;
+	    	}
+	    	.upload-container span{
+	    		line-height: 30px;
+	    	}
+	    	main{
+	    		padding:20px;
+	    	}
+	    	main h1{
+	    		font-size:32px;
+	    		font-weight: 600;
+	    	}
+	    	form .row{
+	    		margin:20px 0;
+	    		display: flex;
+	    	}
+	    	input[type="submit"]{
+	    		padding:5px 20px;
+	    		margin:0 auto;
+	    	}
+	    	input[type="text"]{
+	    		padding:3px 5px;
+	    		border-radius: 3px;
+	    		height:30px;
+	    		border:1px solid #ddd;
+	    	}
+	    	form .row label{
+	    		width:4em;
+	    		display: flex;
+	    		justify-content: flex-end;
+	    		align-items: center;
+	    		margin-right: 5px;
+	    	}
+	    </style>
 	</head>
 	<body>
+		<aside>
+			<p class="new-container active">新建歌曲</p>
+			<ul class="songs-container">
+				<li>歌曲1</li>
+				<li>歌曲2</li>
+			</ul>
+			<div class="upload">
+				<div id="uploadContainer" class="upload-container">
+					<span id="uploadButton">点击上传文件</span>
+					<span>或拖拽文件至此处</span>
+				</div>
+			</div>
+		</aside>
+		<main>
+			<h1>新建歌曲</h1>
+			<form id="form-container">
+				<div class="row">
+					<label for="name">歌名</label>
+				    <input type="text" name="name">
+				</div>
+				<div class="row">
+					<label for="singer">歌手</label>
+					<input type="text" name="singer">
+				</div>
+				<div class="row">
+					<label for="url">链接</label>
+				    <input type="text" name="url">
+				</div>
+				<div class="row">
+					<input type="submit" value="保存">
+				</div>
+			</form>
+		</main>
 	    <script src="../node_modules/leancloud-storage/dist/av-min.js"></script>
 	    <script src="./initializer/av.js"></script>
 	    <script>
-	    	var Song = AV.Object.extend('Song');
-	    	var song = new Song();
-			song.set('testNumber', '1');
-			song.save().then(function(response) {
-			    // 成功
-			    console.log(response)
-			}, function(error) {
-			    // 失败
-			});
+	  //   	var Song = AV.Object.extend('Song');
+	  //   	var song = new Song();
+			// song.set('testNumber', '1');
+			// song.save().then(function(response) {
+			//     // 成功
+			//     console.log(response)
+			// }, function(error) {
+			//     // 失败
+			// });
 	    </script>
+	    <script src="../node_modules/plupload/js/moxie.min.js"></script>
+	    <script src="../node_modules/plupload/js/plupload.min.js"></script>
+	    <script src="../node_modules/qiniu-js/dist/qiniu.min.js"></script>
+	    <script src="./js/event-hub.js"></script>
+	    <script src="./js/upload-song.js"></script>
 	</body>
 </html>
