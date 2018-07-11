@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	    <title>音乐播放</title>
+	    <style>
+	    	.logo{
+	    		position: absolute;
+	    		top:12px;
+	    		left:10px;
+	    		width:100px;
+	    		height:17px;
+	    		background:url(//s3.music.126.net/m/s/img/logo.png?0c21b75d22d52b65dc8083343d161fe4) no-repeat;
+	    		background-size: contain;
+	    	}
+	    </style>
+	</head>
+	<body>
+	<header>
+		<div class="logo">
+		</div>
+	</header>
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/leancloud-storage/dist/av-min.js"></script>
+    <script src="./initializer/av.js"></script>
+    <script src="./js/event-hub.js"></script>
+	<script src="./js/song/app.js"></script>
+	</body>
+</html>
