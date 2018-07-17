@@ -6,6 +6,29 @@
 			$(this.el).find('#background').css('backgroundImage', `url(${data.cover})`)
 			$(this.el).find('#cover').attr('src', data.cover)
 			$(this.el).find('h2').text(data.name)
+
+			this.initLyric(data.lyric)
+		},
+		initLyric(lyric){
+			let lyricList = lyric.split('\n')
+			let pList = lyricList.map((string) => {
+				let p = document.createElement('p')
+		        let regex = /\[([\d:.]+)\](.+)/
+		        let matches =string.match(regex)
+		        if(matches){
+		          p.textContent = matches[2]
+		          let time = matches[1]
+		          let parts = time.split(':')
+		          let minutes = parts[0]
+		          let seconds = parts[1]
+		          let newTime = parseInt(minutes,10) * 60 + parseFloat(seconds,10)
+		          p.setAttribute('data-time', newTime)
+		        }else{
+		          p.textContent = string
+		        }
+				return p
+			})
+			$(this.el).find('.song-lyric').append(pList)
 		},
 		playOrPause(){
 			let Audio = $(this.el).find('audio')[0]
