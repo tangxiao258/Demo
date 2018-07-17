@@ -6,7 +6,19 @@
 			$(this.el).find('#background').css('backgroundImage', `url(${data.cover})`)
 			$(this.el).find('#cover').attr('src', data.cover)
 			$(this.el).find('h2').text(data.name)
-		}
+		},
+		playOrPause(){
+			let Audio = $(this.el).find('audio')[0]
+			if(Audio.paused === true){
+				Audio.play()
+				$(this.el).find('.play-icon').addClass('hidden')
+				$(this.el).find('.img-wrapper').addClass('playing')
+			}else{
+				Audio.pause()
+				$(this.el).find('.play-icon').removeClass('hidden')
+				$(this.el).find('.img-wrapper').removeClass('playing')
+			}
+	    }
 	}
 
 	let model = {
@@ -32,6 +44,13 @@
 			let id = this.getSongId()
 			this.model.setId(id)
 			this.initSong()
+			this.view.playOrPause()
+			this.bindEvents()
+		},
+		bindEvents(){
+			$(this.view.el).on('click', '.dist',  (e) => {
+				this.view.playOrPause()
+			})
 		},
 		initSong(){
 			this.model.find().then((data) => {

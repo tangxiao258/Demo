@@ -40,7 +40,7 @@
 						window.eventHub.emit('afterUpload')
 						var domain = up.getOption('domain');
 						var response = JSON.parse(info.response);
-						var urlLink = 'http://' + domain + encodeURIComponent(response.key);
+						var urlLink = 'http://' + domain + '/' + encodeURIComponent(response.key);
 						window.eventHub.emit('upload', {
 							name: response.key,
 							url:urlLink

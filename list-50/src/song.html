@@ -70,7 +70,6 @@
 	    		background-size: cover;
 	    		left: 50%;
 			    margin-left: -148px;
-			    z-index: 1;
 	    	}
 	    	.img-wrapper{
 	    		position: relative;
@@ -79,6 +78,15 @@
 				border-radius: 50%;
 	    		width:184px;
 	    		height: 184px;
+	    		animation: circle 20s infinite linear; 
+                animation-play-state: paused;
+	    	}
+	    	.img-wrapper.playing{
+	    		animation-play-state: running;
+	    	}
+	    	@keyframes circle{
+	    		0% {transform: rotate(0deg); } 
+                100% {transform: rotate(360deg); } 
 	    	}
 	    	.img-wrapper img{
 			    z-index: -1;
@@ -94,6 +102,9 @@
 			    height:50px;
 			    border-radius: 50%;
 			    background-color:rgba(0,0,0,0.4);
+	    	}
+	    	.play-icon.hidden{
+	    		display: none;
 	    	}
 	    	.song-description{
 	    		margin-top:90px;
@@ -125,11 +136,11 @@
 			<div class="dist">
 			    <div class="dist-light"></div>
 				<div class="img-wrapper">
-					<img id="cover" width=184 height=184 src="http://p1.music.126.net/VyEOqlhwbjDVfLkv3C3U9Q==/109951163408473790.jpg?imageView&thumbnail=360y360&quality=75&tostatic=0" alt="">
-					<svg class="icon play-icon" aria-hidden="true">
-					    <use xlink:href="#icon-play"></use>
-					</svg>
+					<img id="cover" width=184 height=184 src="" alt="">
 				</div>
+				<svg class="icon play-icon" aria-hidden="true">
+				    <use xlink:href="#icon-play"></use>
+				</svg>
 			</div>
 			<div class="song-description">
 				<h2 class="song-name">十万嬉皮</h2>

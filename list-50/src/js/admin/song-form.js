@@ -20,13 +20,17 @@
 			    <input type="text" name="url" value="__url__">
 			</div>
 			<div class="row">
+				<label for="lyric">歌词</label>
+			    <textarea name="__lyric__" id="" cols="30" rows="10"></textarea>
+			</div>
+			<div class="row">
 				<input type="submit" value="保存">
 			</div>
 		</form>
 		`,
 		render(data){
 			let html = this.template
-			let keyList = ['name', 'singer', 'url', 'cover']
+			let keyList = ['name', 'singer', 'url', 'cover', 'lyric']
 			keyList.map((key) => {
 				html = html.replace(`__${key}__`, data[key] || '')
 			})
@@ -50,6 +54,7 @@
 			song.set('singer',this.data.singer);
 			song.set('cover', this.data.cover);
 			song.set('url', this.data.url);
+			song.set('lyric', this.data.lyric);
 			song.save().then(function (response) {
 			    console.log(response)
 			    return response
@@ -63,6 +68,7 @@
 		    song.set('singer',this.data.singer);
 		    song.set('cover', this.data.cover);
 			song.set('url', this.data.url);
+			song.set('lyric', this.data.lyric);
 			return song.save().then(function (response) {
 			    return response
 			}, function (error) {
@@ -86,7 +92,7 @@
 			})
 
 			window.eventHub.on('new', (data) => {
-				this.model.data = {name:'', singer:'', url:'', id:''}
+				this.model.data = {name:'', singer:'', url:'', id:'', cover: '', lyric: ''}
 				this.view.render(this.model.data)
 			})
 
@@ -98,7 +104,7 @@
 		bindEvents(){
 			$(this.view.el).on('submit', 'form', (e) => {
 				e.preventDefault()
-				let keyList = 'name url singer cover'.split(' ')
+				let keyList = 'name url singer cover lyric'.split(' ')
 				keyList.map((key) => {
 					this.model.data[key] = $(this.view.el).find(`input[name=${key}]`).val()
 				})
