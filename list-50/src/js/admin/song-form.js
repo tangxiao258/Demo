@@ -12,6 +12,10 @@
 				<input type="text" name="singer" value="__singer__">
 			</div>
 			<div class="row">
+				<label for="cover">封面</label>
+			    <input type="text" name="cover" value="__cover__">
+			</div>
+			<div class="row">
 				<label for="url">链接</label>
 			    <input type="text" name="url" value="__url__">
 			</div>
@@ -22,7 +26,7 @@
 		`,
 		render(data){
 			let html = this.template
-			let keyList = ['name', 'singer', 'url']
+			let keyList = ['name', 'singer', 'url', 'cover']
 			keyList.map((key) => {
 				html = html.replace(`__${key}__`, data[key] || '')
 			})
@@ -37,14 +41,15 @@
 
 	let model = {
 		data:{
-			name:'', singer: '', url:'', id:''
+			name:'', singer: '', url:'', id:'', cover:''
 		},
 		save(){
 			var Song = AV.Object.extend('Song');
 			var song = new Song();
 			song.set('name', this.data.name);
 			song.set('singer',this.data.singer);
-			song.set('url', this.data.name);
+			song.set('cover', this.data.cover);
+			song.set('url', this.data.url);
 			song.save().then(function (response) {
 			    console.log(response)
 			    return response
@@ -56,7 +61,8 @@
 			var song = AV.Object.createWithoutData('Song', this.data.id);
 			song.set('name', this.data.name);
 		    song.set('singer',this.data.singer);
-			song.set('url', this.data.name);
+		    song.set('cover', this.data.cover);
+			song.set('url', this.data.url);
 			return song.save().then(function (response) {
 			    return response
 			}, function (error) {
@@ -92,7 +98,7 @@
 		bindEvents(){
 			$(this.view.el).on('submit', 'form', (e) => {
 				e.preventDefault()
-				let keyList = 'name url singer'.split(' ')
+				let keyList = 'name url singer cover'.split(' ')
 				keyList.map((key) => {
 					this.model.data[key] = $(this.view.el).find(`input[name=${key}]`).val()
 				})

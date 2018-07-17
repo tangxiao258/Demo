@@ -1,6 +1,12 @@
 {
 	let view = {
-		el:''
+		el:'#app',
+		render(data){
+			$(this.el).find('audio').attr('src', data.url)
+			$(this.el).find('#background').css('backgroundImage', `url(${data.cover})`)
+			$(this.el).find('#cover').attr('src', data.cover)
+			$(this.el).find('h2').text(data.name)
+		}
 	}
 
 	let model = {
@@ -29,7 +35,9 @@
 		},
 		initSong(){
 			this.model.find().then((data) => {
-				console.log(data)
+				let {id, attributes} = data
+				let song = {...attributes, id}
+				this.view.render(song)
 			})
 		},
 		getSongId(){

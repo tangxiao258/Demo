@@ -27,8 +27,19 @@
 	    	main{
 	    		width:100vw;
 	    		height:100vh;
-	    		background:url(//music.163.com/api/img/blur/109951163408473790) no-repeat;
-	    		background-size: cover;
+	    		background-color:rgba(0,0,0,0.5);
+	    	}
+	    	.background{
+    		    position: absolute;
+			    content: '';
+			    top: 0;
+			    left: 0;
+			    width: 100%;
+			    height: 100%;
+			    background: url(//music.163.com/api/img/blur/109951163408473790) no-repeat;
+			    background-size: cover;
+			    filter: blur(8px);
+			    z-index: -1;
 	    	}
 	    	.pointer{
 	    		position: absolute;
@@ -81,6 +92,8 @@
 			    margin-left: -25px;
 			    width:50px;
 			    height:50px;
+			    border-radius: 50%;
+			    background-color:rgba(0,0,0,0.4);
 	    	}
 	    	.song-description{
 	    		margin-top:90px;
@@ -101,29 +114,33 @@
 	    </style>
 	</head>
 	<body>
-	<header>
-		<div class="logo"></div>
-	</header>
-	<main>
-		<div class="pointer"></div>
-		<div class="dist">
-		    <div class="dist-light"></div>
-			<div class="img-wrapper">
-				<img width=184 height=184 src="http://p1.music.126.net/VyEOqlhwbjDVfLkv3C3U9Q==/109951163408473790.jpg?imageView&thumbnail=360y360&quality=75&tostatic=0" alt="">
-				<svg class="icon play-icon" aria-hidden="true">
-				    <use xlink:href="#icon-play"></use>
-				</svg>
+	<div id="app">
+	    <audio></audio>
+		<header>
+			<div class="logo"></div>
+		</header>
+		<main>
+		    <div class="background" id="background"></div>
+			<div class="pointer"></div>
+			<div class="dist">
+			    <div class="dist-light"></div>
+				<div class="img-wrapper">
+					<img id="cover" width=184 height=184 src="http://p1.music.126.net/VyEOqlhwbjDVfLkv3C3U9Q==/109951163408473790.jpg?imageView&thumbnail=360y360&quality=75&tostatic=0" alt="">
+					<svg class="icon play-icon" aria-hidden="true">
+					    <use xlink:href="#icon-play"></use>
+					</svg>
+				</div>
 			</div>
-		</div>
-		<div class="song-description">
-			<h2 class="song-name">十万嬉皮</h2>
-			<div class="song-lyric">
-				<p>大梦一场的董二千先生</p>
-				<p>推开窗户举起望远镜</p>
-				<p>眼底印出一阵浓烟</p>
+			<div class="song-description">
+				<h2 class="song-name">十万嬉皮</h2>
+				<div class="song-lyric">
+					<p>大梦一场的董二千先生</p>
+					<p>推开窗户举起望远镜</p>
+					<p>眼底印出一阵浓烟</p>
+				</div>
 			</div>
-		</div>
-	</main>
+		</main>
+	</div>
 	<script src="//at.alicdn.com/t/font_743421_iigvi9xce5.js"></script>
 	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/leancloud-storage/dist/av-min.js"></script>
