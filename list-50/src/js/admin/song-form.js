@@ -21,7 +21,7 @@
 			</div>
 			<div class="row">
 				<label for="lyric">歌词</label>
-			    <textarea name="__lyric__" id="" cols="30" rows="10"></textarea>
+			    <textarea name="lyric" id="" cols="30" rows="10">__lyric__</textarea>
 			</div>
 			<div class="row">
 				<input type="submit" value="保存">
@@ -106,8 +106,9 @@
 				e.preventDefault()
 				let keyList = 'name url singer cover lyric'.split(' ')
 				keyList.map((key) => {
-					this.model.data[key] = $(this.view.el).find(`input[name=${key}]`).val()
+					this.model.data[key] = $(this.view.el).find(`[name=${key}]`).val()
 				})
+				console.log(this.model.data)
 			
 				this.model.update().then((response) => {
 					let {id, attributes} = response
