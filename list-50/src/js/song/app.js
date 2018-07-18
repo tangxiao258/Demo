@@ -2,10 +2,14 @@
 	let view = {
 		el:'#app',
 		render(data){
-			$(this.el).find('audio').attr('src', data.url)
 			$(this.el).find('#background').css('backgroundImage', `url(${data.cover})`)
 			$(this.el).find('#cover').attr('src', data.cover)
 			$(this.el).find('h2').text(data.name)
+
+			let audio = $(this.el).find('audio').attr('src', data.url).get(0)
+			// 事件监听
+			audio.onended = () => {window.eventHub.emit('songEnd')}
+			audio.ontimeupdate = () => {this.showLyric(audio.currentTime)}
 
 			this.initLyric(data.lyric)
 		},
@@ -28,11 +32,31 @@
 		        }
 				return p
 			})
-			$(this.el).find('.song-lyric').append(pList)
+			$(this.el).find('.song-lyric>.lines').append(pList)
+		},
+		showLyric(time){
+			let allP = $(this.el).find('.lines > p')
+			let p
+			for(let i = 0; i < allP.length; i++){
+				$(allP[i]).removeClass('currentLyric')
+				let currentTime = Number(allP.eq(i).attr('data-time'))
+		        let nextTime = Number(allP.eq(i+1).attr('data-time'))
+		        if(currentTime <= time && time < nextTime){
+		            p = allP[i]
+		            break
+		        }
+			}
+			let pHeihgt = p.getBoundingClientRect().top
+			let linesHeight  = $(this.el).find('.song-lyric > .lines')[0].getBoundingClientRect().top
+			console.log(pHeihgt)
+			console.log(linesHeight)
+			let height = linesHeight - pHeihgt
+			$(this.el).find('.song-lyric > .lines').css({transform: `translateY(${height}px)`})
+			$(p).addClass('currentLyric')
 		},
 		playOrPause(){
 			let Audio = $(this.el).find('audio')[0]
-			if(Audio.paused === true){
+			if(Audio.paused === true){  // 是否暂停
 				Audio.play()
 				$(this.el).find('.play-icon').addClass('hidden')
 				$(this.el).find('.img-wrapper').addClass('playing')
@@ -41,6 +65,10 @@
 				$(this.el).find('.play-icon').removeClass('hidden')
 				$(this.el).find('.img-wrapper').removeClass('playing')
 			}
+	    },
+	    ended(){
+	    	$(this.el).find('.play-icon').removeClass('hidden')
+			$(this.el).find('.img-wrapper').removeClass('playing')
 	    }
 	}
 
@@ -73,6 +101,11 @@
 		bindEvents(){
 			$(this.view.el).on('click', '.dist',  (e) => {
 				this.view.playOrPause()
+			})
+		},
+		bindEventHub(){
+			window.eventHub.on('songEnd', () => {
+				this.view.ended()
 			})
 		},
 		initSong(){

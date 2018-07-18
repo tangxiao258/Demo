@@ -121,8 +121,15 @@
 	    		height:96px;
 	    		overflow: hidden;
 	    	}
+	    	.song-lyric .lines{
+	    		transition: all 0.3s;
+	    	}
 	    	.song-lyric p{
 	    		line-height: 32px;
+	    		color:#c1c1c1;
+	    	}
+	    	.song-lyric p.currentLyric{
+	    		color:#fff;
 	    	}
 	    </style>
 	</head>
@@ -145,8 +152,9 @@
 				</svg>
 			</div>
 			<div class="song-description">
-				<h2 class="song-name">十万嬉皮</h2>
+				<h2 class="song-name"></h2>
 				<div class="song-lyric">
+				    <div class="lines"></div>
 				</div>
 			</div>
 		</main>
